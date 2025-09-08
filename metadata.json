@@ -1,0 +1,5 @@
+{
+  "name": "AI Diet Planner",
+  "description": "Generate personalized weekly diet plans for various health conditions and dietary needs using AI. Input your health condition, dietary preferences, allergies, and goals to receive a custom 7-day meal plan.",
+  "requestFramePermissions": []
+}
