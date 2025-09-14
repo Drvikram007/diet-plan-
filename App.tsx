@@ -55,7 +55,7 @@ const App: React.FC = () => {
                 <span className="block sm:inline">{error}</span>
               </div>
             )}
-            {dietPlan && userInput && <DietPlanDisplay plan={dietPlan} duration={userInput.duration} />}
+            {dietPlan && userInput && <DietPlanDisplay plan={dietPlan} duration={userInput.duration} name={userInput.name} />}
             {!isLoading && !dietPlan && !error && (
                 <div className="text-center p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
                     <h2 className="text-2xl font-bold text-gray-700">Welcome!</h2>

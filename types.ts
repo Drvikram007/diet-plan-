@@ -15,6 +15,7 @@ export interface DailyPlan {
 export type DietPlan = DailyPlan[];
 
 export interface UserInput {
+  name: string;
   condition: string;
   age: number | ''; // Allow empty string for initial form state
   comorbidity: string;

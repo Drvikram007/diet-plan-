@@ -68,9 +68,10 @@ const DailyPlanAccordion: React.FC<DailyPlanAccordionProps> = ({ dailyPlan, isOp
 interface DietPlanDisplayProps {
   plan: DietPlan;
   duration: PlanDuration;
+  name: string;
 }
 
-const DietPlanDisplay: React.FC<DietPlanDisplayProps> = ({ plan, duration }) => {
+const DietPlanDisplay: React.FC<DietPlanDisplayProps> = ({ plan, duration, name }) => {
   const [openDay, setOpenDay] = useState<string | null>(plan.length > 0 ? plan[0].day : null);
 
   const handleToggle = (day: string) => {
@@ -80,7 +81,7 @@ const DietPlanDisplay: React.FC<DietPlanDisplayProps> = ({ plan, duration }) => 
   return (
     <div className="mt-10 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
         <div className="p-6 border-b border-gray-200 bg-gray-50/50">
-            <h2 className="text-2xl font-bold text-center text-gray-800">Your {duration} Personalized Nutrition Plan</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-800">{name}'s {duration} Personalized Nutrition Plan</h2>
         </div>
       {plan.map((dailyPlan, index) => (
         <DailyPlanAccordion

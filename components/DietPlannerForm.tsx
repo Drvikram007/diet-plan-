@@ -9,6 +9,7 @@ interface DietPlannerFormProps {
 }
 
 const DietPlannerForm: React.FC<DietPlannerFormProps> = ({ onSubmit, isLoading }) => {
+  const [name, setName] = useState('');
   const [condition, setCondition] = useState('');
   const [age, setAge] = useState<number | ''>('');
   const [comorbidity, setComorbidity] = useState('');
@@ -28,11 +29,11 @@ const DietPlannerForm: React.FC<DietPlannerFormProps> = ({ onSubmit, isLoading }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!condition.trim() || !age) {
-        alert("Please specify a health condition and age.");
+    if (!name.trim() || !condition.trim() || !age) {
+        alert("Please fill out your name, age, and health condition.");
         return;
     }
-    onSubmit({ condition, age, comorbidity, preferences, allergies, goals, duration, language });
+    onSubmit({ name, condition, age, comorbidity, preferences, allergies, goals, duration, language });
   };
 
   return (
@@ -42,6 +43,20 @@ const DietPlannerForm: React.FC<DietPlannerFormProps> = ({ onSubmit, isLoading }
           Health Profile
         </legend>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+           <div className="space-y-2">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g., Jane Doe"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition"
+              required
+            />
+          </div>
           <div className="space-y-2">
             <label htmlFor="age" className="block text-sm font-medium text-gray-700">
               Age <span className="text-red-500">*</span>
@@ -57,7 +72,7 @@ const DietPlannerForm: React.FC<DietPlannerFormProps> = ({ onSubmit, isLoading }
               min="1"
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 md:col-span-2">
             <label htmlFor="condition" className="block text-sm font-medium text-gray-700">
               Primary Health Condition <span className="text-red-500">*</span>
             </label>
@@ -170,7 +185,7 @@ const DietPlannerForm: React.FC<DietPlannerFormProps> = ({ onSubmit, isLoading }
 
       <button
         type="submit"
-        disabled={isLoading || !condition.trim() || !age}
+        disabled={isLoading || !name.trim() || !condition.trim() || !age}
         className="w-full flex items-center justify-center gap-x-2 px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
       >
         {isLoading ? (

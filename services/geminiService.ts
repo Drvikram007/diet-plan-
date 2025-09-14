@@ -39,7 +39,7 @@ const buildPrompt = (userInput: UserInput): string => {
     const durationDays = userInput.duration === '7-Day' ? 7 : 30;
 
     let prompt = `Generate a detailed ${durationDays}-day diet and nutrition plan in the ${userInput.language} language.`;
-    prompt += ` The plan is for a ${userInput.age}-year-old person with the primary health condition of "${userInput.condition}".`;
+    prompt += ` The plan is for ${userInput.name}, a ${userInput.age}-year-old person, with the primary health condition of "${userInput.condition}".`;
 
     if (userInput.comorbidity) {
         prompt += ` They also have the following comorbidities: "${userInput.comorbidity}".`;
